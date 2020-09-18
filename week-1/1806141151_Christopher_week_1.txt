@@ -1,0 +1,19 @@
+Tanggal : 18 September 2020
+Apa yang saya pelajari :
+	Dari mengerjakan pre-test, saya kembali me-review materi OS, seperti process vs. program
+	(intinya process adalah program saat dijalankan). Untuk materi baru, ada beberapa hal yang saya pahami
+	dari menonton video dan eksplorasi di internet. Salah satu yang saya pelajari adalah perbedaan system vs.
+	application programming, yang intinya adalah hasil app. programming lebih berguna untuk user 
+	sementara system programming lebih berguna bagi hardware / software lain, selain penggunaan bahasanya.
+	Lalu, saya juga mempelajari soal hierarki directory di Unix OS (terutama Linux). Hierarkinya dimulai dengan
+	"/" sebagai root folder, yang kemudian disusul dengan directory lain seperti /bin, /etc, atau /usr. Kemudian,
+	untuk masalah relative path di hierarki tersebut, yang saya pahami adalah path utuhnya didapat sistem dengan 
+	menambahkan current path (yang dapat dilihat dengan command pwd) ditambah dengan relative path yang kita tuliskan,
+	yang akhirnya menjadi absolute path juga. Terakhir, saya juga belajar bahwa di Linux, informasi mengenai sistem
+	tersimpan di directory /proc (seperti /proc/meminfo untuk informasi mengenai memory, atau /proc/cpuinfo untuk
+	info mengenai CPU dan processor).
+Apa yang belum saya pahami :
+	Walaupun saya sudah mulai memahami cara kerja relative path, saya masih cukup bingung soal menerjemahkan relative
+	path menjadi absolute path, terutama dengan soal yang diberikan di WS1. Saya berencana untuk eksplorasi lebih lanjut
+	soal hal ini.
+
