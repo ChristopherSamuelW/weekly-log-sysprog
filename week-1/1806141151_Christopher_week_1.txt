@@ -17,3 +17,16 @@ Apa yang belum saya pahami :
 	path menjadi absolute path, terutama dengan soal yang diberikan di WS1. Saya berencana untuk eksplorasi lebih lanjut
 	soal hal ini.
 
+Tanggal : 21-22 September 2020
+Apa yang saya pelajari :
+	Setelah saya pelajari lagi mengenai relative path dan juga soal terminal Linux, saya sadar bahwa soal yang
+	belum bisa saya kerjakan kemarin di WS1 sebenarnya cukup sederhana : bagian user@ sampai # itu menunjukkan user
+	beserta current directorynya, dengan # sepertinya menggantikan $ untuk terminal Linux. Selain itu, saya juga
+	belajar bahwa nama directory tree Linux yang beberapa hari lalu saya pelajari memiliki "name" Filesystem
+	Hierarchy Standard (FHS), dan FHS sendiri memiliki dedicated pagenya, lengkap pula dengan dokumentasinya. Lalu,
+	saya juga menemukan informasi bahwa setiap device yang terhubung dengan sistem Linux memiliki major dan minor
+	numbernya masing-masing, yang memperjelas maksud informasi yang didapat dari /proc/partitions dari soal nomor 4 WS1.
+Apa yang belum saya pahami :
+	Setelah eksplorasi, pertanyaan saya kemarin terjawab sendiri, dan sejauh ini, saya belum menemukan materi yang
+	tidak saya pahami sama sekali.
+
