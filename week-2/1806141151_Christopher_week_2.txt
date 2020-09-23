@@ -1,0 +1,30 @@
+Tanggal : 23 September 2020
+Apa yang saya pelajari :
+	Pada hari ini, saya mengerjakan pre-test soal System Call kemudian menonton bagian 1 dari rekaman kuliah System Call,
+	dan setengah dari rekaman System Call bagian 2.
+
+	Dari rekaman bagian 1, saya mulai belajar kembali soal shell, dan posisinya sebagai lapisan
+	paling luar sistem dengan interface yang dapat mengakses kernel. Kemudian, saya juga mulai memahami bahwa inter
+	-process communication yang sederhana dapat dilakukan dengan pipelining (misalnya "cat sam.txt | grep 101"). Di
+	contoh tadi, Standard Output dari "cat sam.txt" dijadikan Standard Input dari "grep 101". Selain dengan pipelining,
+	ada juga metode socket (yang akan saya pelajari juga melalui mata kuliah JarKom). Saya juga belajar mengenai
+	konsep "universality of I/O", yang pada dasarnya adalah konsep di mana proses I/O apapun, termasuk devices, tetap
+	menggunakan system calls (menurut saya hal ini mungkin karena devices dll. juga punya representasinya sebagai file
+	atau directory). 
+
+	Dari rekaman bagian 2, saya belajar mengenai Static vs. Shared Library. Perbedaan keduanya adalah
+	shared library tidak dimasukkan secara langsung ke dalam source code program, sementara static library harus
+	dimasukkan ke dalam source code programnya. Saya juga baru tahu bahwa setiap process yang sedang berjalan memiliki
+	representasi directorynya di /proc, dengan nama directory yang sama dengan pid dari process tersebut. Dengan masuk
+	ke directory itu, kita juga bisa melihat berbagai macam hal mengenai process tersebut. Terakhir, saya belajar
+	mengenai system call : penghubung antara user dengan kernel mode dalam OS. Perubahan user - kernel mode merupakan
+	tugas dari "Trap Handler", yang juga berfungsi untuk menjalankan fungsi-fungsi kernel yang diminta oleh application
+	wrapper function (wrapper berfungsi untuk mempersiapkan pemanggilan fungsi dari kernel).
+
+Apa yang belum saya pahami :
+	Saya masih kurang paham cara kerja Trap Handler dan wrapper function (belum ada gambaran / abstraksinya di kepala
+	saya). Dari mengerjakan pre-test, saya juga masih belum paham soal bagaimana mengidentifikasi error saat kita
+	menggunakan syscalls. Saya harap dengan melanjutkan membaca slide dan menonton rekaman, pertanyaan saya ini bisa
+	terjawab.
+
+
