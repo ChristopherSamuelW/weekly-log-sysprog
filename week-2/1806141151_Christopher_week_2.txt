@@ -27,4 +27,21 @@ Apa yang belum saya pahami :
 	menggunakan syscalls. Saya harap dengan melanjutkan membaca slide dan menonton rekaman, pertanyaan saya ini bisa
 	terjawab.
 
+Tanggal : 26 September 2020
+Apa yang saya pelajari :
+	Saya kembali menonton bagian video mengenai Trap Handler dan wrapper function beberapa kali, dan akhirnya saya
+	baru mendapat gambaran apa yang terjadi saat syscall, yang ternyata juga sudah saya jelaskan di log terakhir.
+	Saya juga mendapatkan informasi bahwa salah satu cara untuk melihat semacam log system calls yang dipanggil sebuah
+	process adalah dengan strace -p <pid>.
 
+	Dari mengerjakan WS 2, saya juga mendapatkan beberapa informasi mengenai penggunaan system calls, terutama dalam
+	sebuah library function, misalnya saat kita menggunakan malloc(), ada system call sbrk dan mmap yang digunakan.
+	Selain itu, saya juga mendapat informasi bahwa cara me-list semua system call error codes yang umum adalah dengan
+	command errno -l di shell, tetapi mungkin perlu menggunakan sudo apt install moreutils terlebih dahulu. Dari
+	pemahaman saya juga, sebuah library function lebih baik digunakan dari memanggil system call langsung di C programs
+	karena library functions sudah pre-made untuk C, seharusnya relatif lebih aman dan mudah dibanding kita langsung
+	memanggil syscall.
+
+Apa yang belum saya pahami : 
+	Saya masih belum paham mengenai mekanisme error handling dari system calls. Saya sudah paham mengenai daftar
+	error codes, tetapi belum paham mengenai handling error dari system call, terutama dalam sebuah C program.
