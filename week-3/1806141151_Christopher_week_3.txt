@@ -1,0 +1,28 @@
+Tanggal : 3 Oktober 2020
+Apa yang saya pelajari :
+	Pada hari ini, saya mengerjakan sebagian besar dari WS3, dan saya juga mendapat info baru dari eksplorasi
+	saat mengerjakan soal-soalnya.
+
+	Pertama, saya belajar mengenai perbedaan stat() dan lstat() : stat() selalu mengembalikan informasi file yang dirujuk,
+	bahkan ketika path yang kita berikan berakhir pada symbolic link, tetapi untuk kasus sama, lstat() akan mengembalikan
+	informasi mengenai symbolic linknya.
+	
+	Kemudian, saya juga belajar mengenai file descriptor, yaitu integers yang menunjukkan resource apa saja yang 
+	digunakan file tersebut saat dibuka dengan open() (menjadi proses), dan setiap proses minimal punya 3 file descriptors
+	yang open, yaitu stdin(0), stdout(1) dan stderror(3). Untuk resource lain, representasi integernya bisa berbeda-beda.
+	Pada dasarnya, semua proses yang berjalan memiliki file descriptornya, tetapi ada kasus di mana proses bisa tidak
+	memiliki file descriptor, yaitu ketika prosesnya berjalan di background, atau dalam kata lain daemon processes.
+
+	Terakhir, saya juga belajar mengenai system call open(), creat(), dan close(). open() sesuai namanya merupakan
+	system call untuk membuka suatu file, dan dengan flag O_WRONLY|O_TRUNC|O_CREAT (dan juga mode sebagai inputnya),
+	system call open() itu sama saja secara fungsionalitas dengan creat(). Dari eksplorasi saya, saya menemukan bahwa
+	di sistem UNIX yang lama, open() tidak bisa membuka file yang belum ada, sehingga dibuatlah system call creat().
+	Sekarang, tentunya, kita bisa menggunakan open() untuk mencapai hasil yang sama dengan creat(). Saya juga belajar
+	mengenai risiko menggunakan open(), tetapi tidak menutup file yang dibuka dengan close(). Pada dasarnya, kalau kita
+	tidak menggunakan close(), kita tidak menutup file descriptor pada file yang dibuka dengan open(), yang berarti
+	resourcenya dianggap masih terpakai oleh file yang seharusnya sudah kita tutup tadi. Selain itu, ada kemungkinan
+	terjadi data loss setelah operasi Write kalau file yang kita open() tidak kita close(). 
+
+Apa yang belum saya pahami :
+	Saya masih belum begitu paham dengan inode table (yang ditanyakan di pre-test week 3). Selain itu, masih ada
+	beberapa istilah yang perlu saya review atau cari sendiri maknanya agar ke depannya saya tidak bingung sendiri.
