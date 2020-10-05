@@ -26,3 +26,16 @@ Apa yang saya pelajari :
 Apa yang belum saya pahami :
 	Saya masih belum begitu paham dengan inode table (yang ditanyakan di pre-test week 3). Selain itu, masih ada
 	beberapa istilah yang perlu saya review atau cari sendiri maknanya agar ke depannya saya tidak bingung sendiri.
+
+Tanggal : 5 Oktober 2020
+Apa yang saya pelajari :
+	Hari ini, saya belajar mengenai kegunaan system call lseek(), yaitu mengubah offset suatu file sesuai keinginan.
+	Bila kita melakukan read file dari offset tersebut dan kita menemukan null characters, proses read akan berhenti.
+	Bagian file yang hanya berisi null characters saja (bytes yang bernilai 00) dinamakan File Holes.
+
+	Saya juga mulai memahami soal inodes. Inode adalah sebuah struktur data yang berfungsi untuk menyimpan metadata
+	dari file dan directory di sistem. Setiap entry di inode memiliki sebuah index yang dapat membedakan antara entry
+	inode yang lainnya. Salah satu cara mengakses inode dari sebuah file adalah dengan syscall "stat".
+
+Apa yang belum saya pahami :
+	Setelah melakukan eksplorasi, saya belum ada pertanyaan baru lagi.
