@@ -1,0 +1,67 @@
+Tanggal : 9 Oktober 2020
+Apa yang saya pelajari :
+	Pada hari ini, saya belajar kembali mengenai process di dalam sistem. Walaupun beberapa materi sudah pernah dibahas
+	di kelas OS, saya juga belajar hal-hal baru dari menonton video Pak Ari dan dari eksplorasi saya sendiri.
+
+	Pertama, saya diingatkan kembali bahwa process adalah bagian dari program yang berjalan, di mana program itu sendiri 
+	adalah kumpulan informasi yang dapat digunakan oleh kernel untuk membuat process saat program itu "dijalankan" (saat
+	runtimenya). Secara lebih dalam, process adalah sebuah entitas yang didefinisikan dan dibuat oleh kernel, dan agar
+	process bisa menyelesaikan eksekusinya, dialokasikanlah resources dari sistem dengan bantuan kernel. Pada windows,
+	program yang bisa dijalankan dan dibuat processnya adalah file executable, sementara di UNIX-Like OSes, hanya file
+	-file dengan access modifier x.
+
+	Saat belajar mengenai process, saya juga belajar lagi mengenai pid, ppid, dan istilah child-parent. Pada dasarnya, sebuah
+	proses umumnya dieksekusi di atas sebuah proses lain (kecuali init), atau dapat dilihat sebagai parent process yang
+	membuat child process. PID sendiri adalah Process ID, atau identifier unik yang diberi sistem kepada process yang
+	sedang berjalan itu, sementara PPID adalah Parent PID, atau PID dari parent process suatu process (child). Khusus
+	untuk process init, PPID nya adalah 0 (dengan menggunakan ps), yang menurut eksplorasi saya adalah sebuah konvensi
+	saja untuk menunjukkan bahwa init tidak punya parent process. Salah satu contoh hubungan parent-child : saat saya
+	menggunakan man, misalnya man fopen, sebenarnya yang membuka program dan menjalankan process man itu adalah bash
+	saya, sehingga bash menjadi parent process dari man yang sedang berjalan ini. Selain dengan cara itu, ada juga command
+	fork() yang dapat membuat process duplikat sama persis dari sebuah parent, tetapi process barunya tersebut dianggap
+	sebagai process yang baru berjalan (time nya di reset, dll.). Setelah melakukan fork(), kedua child yang dihasilkan
+	dari fork bersama parentnya akan melanjutkan pekerjaan mereka dari titik di mana process melakukan fork(). Sebagai
+	catatan tambahan, fork() akan mengembalikan integer yang menunjukkan PID dari child process yang dibuat bagi parent,
+	dan akan return 0 bagi childnya. Umumnya, sebuah child juga akan ikut diterminate ketika kita membunuh parent processnya,
+	tetapi child nya dapat menjadi orphaned process dengan menggunakan command nohup.
+
+	Dalam membahas process, ada beberapa jenis proses yang unik, yaitu zombie process, orphaned process, dan juga daemon
+	process. Singkatnya, zombie process adalah sebuah child process yang gagal terminasi karena ada suatu masalah dengan
+	parent processnya. Zombie process tidak dapat dimatikan secara langsung, sesuai namanya, tetapi dapat diterminate
+	dengan mengirim sinyal kill() untuk men-terminate atau membunuh semua child kepada parentnya. Di lain sisi, apabila
+	sebuah child process masih tetap berjalan setelah parentnya (selain init) diterminate, misalnya dengan nohup, maka
+	process tersebut akan "diadopsi" oleh init, sehingga PPID process tersebut berubah menjadi 1 (yang lagi-lagi, dengan
+	asumsi bahwa parent aslinya bukan init). Terakhir, daemon, seperti yang sudah dibahas minggu lalu, adalah process
+	yang tidak memiliki file descriptor terbuka.
+
+	Untuk melihat process yang sedang berjalan di sistem sendiri, bisa menggunakan command top atau ps. Command ps
+	sendiri memiliki banyak options untuk mengubah apa yang dicari maupun output commandnya sendiri. Dari mempelajari
+	cara kerja ps sendiri, saya menemukan berbagai tipe dari process states di Linux maupun UNIX OS lainnya, yaitu
+	uninterruptible sleep, interruptible sleep, running/runnable, stopped, paging (sudah tidak digunakan sejak
+	kernel 2.6.xx), dead, dan zombie process. Sebagai catatan saja, dead process seharusnya tidak muncul di output
+	ps.
+
+	Umumnya, struktur sebuah process adalah : text (program codes) yang akan dijalankan processor, initialized data yang
+	mengandung static / global variables yang sudah memiliki nilai (misalnya static int A = 100;), uninitialized data
+	yang mengandung static / global variables yang belum diinisialisasi (misalnya static int B;), heap yang dialokasikan
+	secara dinamis saat process berjalan, stack yang mengandung data yang dipisahkan dengan heap, dan argument vectors
+	(argv) bersama dengan environ (environment variables sistem).
+
+	Dalam menjalankan process dan mengalokasikan memory, sistem tidak langsung menggunakan physical memory, tetapi menggunakan
+	Virtual Memory (RAM) terlebih dahulu. Alokasi virtual address ke virtual memory ini merupakan tugas dari kernel juga. Dalam
+	implementasinya, ada juga yang dinamakan shared memory, yaitu bagian memory yang dapat digunakan oleh beberapa process
+	sekaligus. Pada jalannya process ataupun aplikasi, akses memory pertama melalui virtual address, kemudian melalui
+	page table, sebelum akhirnya dapat mencapai physical RAM.
+
+	Selain itu semua, saya juga belajar cara menambahkan environment variables secara permanen di Linux, atau setidaknya
+	di dalam virtualbox. Environment variables sendiri merupakan variable yang sudah memiliki nilai dan dapat diakses
+	sistem, umumnya melalui bash atau shell sejenis. Untuk menambahkan untuk 1 user saja, gunakan vi ~/.bash_profile
+	dan tambahkan "export varname=value" di baris paling bawah, kemudian jalankan source ~/.bash_profile. Untuk menambahkan
+	bagi semua user, kita dapat navigate ke /etc/profile.d dan menambahkan file shell yang berisi environment variablenya,
+	dan kemudian gunakan command source lagi untuk file itu.
+
+Apa yang belum saya pahami :
+	Saya masih perlu waktu untuk memahami penjelasan mengenai utilisasi virtual memory. Saya paham konsepnya, tetapi
+	untuk teknisnya masih perlu saya pahami lagi. Selain itu, saya juga masih belajar mengenai command ps dan gunanya.
+	Saya tahu command ps outputnya apa, tetapi saya masih belum 100% yakin apa kegunaan umumnya bagi user. Untuk membantu 
+	saya memahami ps, saya juga mencoba-coba berbagai options ps di virtualbox. 
