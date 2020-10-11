@@ -64,4 +64,37 @@ Apa yang belum saya pahami :
 	Saya masih perlu waktu untuk memahami penjelasan mengenai utilisasi virtual memory. Saya paham konsepnya, tetapi
 	untuk teknisnya masih perlu saya pahami lagi. Selain itu, saya juga masih belajar mengenai command ps dan gunanya.
 	Saya tahu command ps outputnya apa, tetapi saya masih belum 100% yakin apa kegunaan umumnya bagi user. Untuk membantu 
-	saya memahami ps, saya juga mencoba-coba berbagai options ps di virtualbox. 
+	saya memahami ps, saya juga mencoba-coba berbagai options ps di virtualbox.
+
+Tanggal : 11 Oktober 2020
+Apa yang saya pelajari :
+	Melanjutkan materi yang saya pelajari mengenai child dan parent process, saya belajar juga mengenai cara terminasinya
+	dengan exit() dan _exit(), serta perbedaannya. _exit() langsung membunuh process, sementara exit() menjalankan function
+	yang disimpan di atexit dan on_exit serta mem-flush stdio. Untuk membunuh process (yang bukan init), sebaiknya menggunakan
+	_exit(), karena dengan melakukan flush stdio beserta fungsi lain dari exit(), ada kemungkinan parent process terganggu,
+	terutama di proses I/O. Selain itu, saya juga mempelajari soal konsep Copy on Write dan hubungannya dengan forking.
+	Copy on Write (COW) adalah sebuah konsep yang umum digunakan di mana kalau ada 2 atau lebih process yang meminta 
+	resource yang sama, masing-masing process tersebut diberikan pointer yang menunjuk ke resource yang sama untuk menghemat
+	utilisasi resource. Ketika ada process yang mencoba mengubahnya, hasil perubahan pada resource hanya dapat dilihat
+	process yang mengubahnya, dan dinamakan "private copy" (utilisasi resource baru ditambah dalam kasus ini). Dalam
+	konsep fork() yang saya bahas kemarin juga, child hasil fork() dan parentnya menggunakan system resource yang sama,
+	sehingga konsep COW diterapkan pada parent dan childnya ini untuk, kembali lagi, menghemat penggunaan resource sistem.
+
+	Saat mempelajari cara membunuh zombie process, ternyata saya masih ada salah paham mengenai kegunaan kill -s SIGCHLD.
+	Pada dasarnya, command itu digunakan untuk mengirimkan sinyal SIGCHLD, atau menyuruh process tersebut untuk melakukan
+	wait() sehingga kalau ada zombie process, dapat dilakukan clean upnya, bukan untuk membunuh semua child dari parent
+	process tersebut. Selain itu, saya juga belajar bahwa dengan menjadikan sebuah zombie process menjadi orphaned process,
+	itu juga cara yang valid untuk membersihkan zombie process, karena init secara berkala akan melakukan wait() sendiri,
+	sehingga pada suatu waktu zombie tersebut akan dibersihkan sendiri.
+
+	Terakhir, saya juga kurang lebih sudah mulai memahami command ps dan beberapa kegunaannya. Command ps (process status)
+	digunakan untuk melihat informasi mengenai berbagai proses yang berjalan di sistem. Tergantung dari options yang kita
+	gunakan dalam command ps (misalnya ps -e), hasil dari ps nya akan bervariasi, dan masing-masing punya kegunaannya juga.
+	ps juga mempunyai kegunaan selain untuk melihat semua proses yang berjalan, misalnya menggunakan command ps -e untuk
+	mencari zombie process dan PPID dari zombie tersebut dan menggunakan ps r untuk mencari PID process unuk kita kill().
+	Informasi yang saya dapatkan mengenai ps ini cukup beragam, dan kurang lebih inti yang saya pelajari mengenai ps saya
+	gunakan untuk menjawab soal nomor 2 dari Woksheet minggu ini. 
+
+Apa yang belum saya pahami :
+	Saya masih perlu waktu untuk mempelajari ulang mengenai Virtual Memory. Saya harap dengan membaca informasi di internet
+	dan menonton video Pak Ari, permasalahan yang saya hadapi dari terakhir kali saya update log dapat terselesaikan.
