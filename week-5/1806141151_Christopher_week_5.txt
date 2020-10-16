@@ -1,0 +1,43 @@
+Tanggal : 16 Oktober 2020
+Apa yang saya pelajari :
+	Hari ini, saya belajar lagi mengenai virtual memory. Virtual memory management adalah teknik untuk menambah efisiensi
+	dari CPU dan RAM (physical memory). Virtual memory management, sesuai namanya,  diimplementasikan dengan virtual memory.
+	Virtual memory sendiri disimpan menggunakan storage space hardware, dan dapat dilihat juga sebagai salah satu kekurangannya.
+	Virtual memory management memanfaatkan property program yang umum, yaitu locality of reference. Locality of reference
+	sendiri terdirir dari spatial locality (kecenderungan program untuk menunjuk / mereference memory address yang dekat
+	dengan address yang baru saja direfer) dan temporal locality (kecenderungan program untuk mengakses / merefer memory
+	yang sama dalam waktu dekat). Dengan konsep locality of reference, OS dapat memanfaatkannya sehingga eksekusi program
+	bisa dilakukan walaupun hanya ada sebagian address space program itu yang di load ke RAM. Dalam implementasinya,
+	virtual memory management menggunakan demand paging untuk me-load page yang dibutuhkan program (kalau tidak ada, di
+	handle dengan page fault dan swapping, tetapi page fault sendiri bukan error, melainkan expected result). Walaupun
+	demand paging ini sangat berguna dalam konteks virtual memory, tetap saja ada overhead cost dari melakukannya. Dengan
+	implementasi virtual memory ini, salah satu masalah yang diatasi adalah masalah akses memory dari berbagai process,
+	karena dengan virtual memory, semua proses diisolasi satu sama lain (dan juga dari kernel), sehingga sebuah process
+	tidak dapat mengakses, apalagi merubah, memory dari process lainnya.
+
+	Ada beberapa alasan kenapa virtual memory, walaupun umumnya lebih lemah dalam konteks performa dibanding RAM, masih
+	digunakan secara umum. Physical memory sendiri cukup kuat dan cepat, tetapi umumnya memiliki ukuran yang terbatas
+	(walaupun ukuran RAM terus bertambah seiring waktu di pasaran) dan mahal. Untuk mengatasi keterbatasan itu, sampai
+	sekarang virtual memory juga masih digunakan dalam berbagai OS. Dampak dari hal ini adalah kita bisa menjalankan
+	program yang sebenarnya membutuhkan RAM lebih besar dari RAM host kita. Selain itu, virtual memory memberikan kita
+	sebagai programmer keuntungan dalam memory management, karena dengan virtual memory, kita tidak perlu mengetahui
+	secara detail mengenai susunan physical hardware sistem kita.
+
+	Kemudian, saya juga belajar lagi mengenai memory leak. Sebenarnya, saya sudah belajar juga mengenai memory leak
+	di mata kuliah Advanced Programming, tetapi memory leak di mata kuliah tersebut lebih spesifik ke Java (walaupun
+	pemahaman saya dari mata kuliah itu membantu juga). Pada dasarnya, ketika kita menggunakan sebuah block of memory
+	tetapi, entah kenapa, kita tidak membebaskan block itu setelah selesai dipakai, kita akan membuang-buang resource
+	memory, dan dalam jangka panjang dapat menghambat kinerja sistem. Kejadian tersebut kita kenal dengan nama memory
+	leak.
+
+	Umumnya, penyebab memory leak ini tidak disengaja karena logic error dari programmernya, tetapi memang kita bisa menulis
+	kode untuk spesifik menyebabkan memory leak. Salah satu penyebab memory leak yang umum adalah pembuatan static atau
+	global variabel secara berulang-ulang, karena umumnya static variable akan tetap ada sampai process yang membuatnya
+	dihentikan. Contoh lain dalam konteks pemrograman Java adalah ketika kita mau memutuskan reference dari suatu object
+	ke object lain, tetapi karena suatu hal (logic error), reference tersebut tidak berhasil diputuskan, sehingga object
+	yang seharusnya dibuang itu tidak dihapus dalam proses Garbage Collection JVM, dan secara langsung membuang-buang
+	resource memory.
+
+Apa yang belum saya pahami :
+	Saya masih belum 100% paham mengenai cara demand paging bekerja, tetapi secara abstraksi saya sudah ada gambarannya.
+	Selain itu, saya juga belum terlalu tahu banyak soal contoh memory leak di level OS.
