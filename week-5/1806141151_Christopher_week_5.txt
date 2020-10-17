@@ -41,3 +41,31 @@ Apa yang saya pelajari :
 Apa yang belum saya pahami :
 	Saya masih belum 100% paham mengenai cara demand paging bekerja, tetapi secara abstraksi saya sudah ada gambarannya.
 	Selain itu, saya juga belum terlalu tahu banyak soal contoh memory leak di level OS.
+
+Tanggal : 17 Oktober 2020
+Apa yang saya pelajari :
+	Hari ini, saya belajar mengenai implementasi memory allocation dengan malloc(), dan juga mengenai free(). Pada dasarnya,
+	malloc mengalokasikan size bytes (dengan size merupakan parameter di fungsi malloc) dari heap dan me-return pointer ke
+	block pertama memory yang baru dialokasikan. Implementasi malloc sendiri menggunakan system call sbrk, tetapi kalau
+	besar memory yang mau kita alokasikan lebih besar MMAP_THRESHOLD, maka alokasi memory dilakukan dengan syscall mmap.
+	malloc akan me-return NULL bila ada masalah selama eksekusinya, dan juga men-set errno untuk mengindikasikan ada error.
+	Untuk cara kerjanya sendiri, malloc mencari block "bebas" dengan ukuran yang sama atau lebih besar dari apa yang kita
+	minta dalam parameter ukurannya. Ketika ditemukan, malloc akan me-return pointer ke byte pertama dari free blocks
+	tersebut. Untuk menambah efisiensi penggunaan memory, malloc akan "memisahkan" block dengan ukuran yang lebih besar
+	dari apa yang kita minta menjadi bagian yang digunakan, dan bagian kecil yang masih terdapat dalam free list. Untuk
+	membebaskan alokasi memory, kita dapat menggunakan library function free(). free() sendiri umumnya tidak benar-benar
+	membebaskan memory, tetapi memainkan pointer next free block pada block-block yang bersangkutan.
+
+	Lalu, saya belajar juga mengenai setjmp dan longjmp, beserta data type buf_jmp. Pada dasarnya, setjmp menerima input
+	env dengan tipe buf_jmp, dan berfungsi untuk men-set titik atau kondisi program yang bisa menjadi tujuan kembali dari
+	longjmp, dengan data type buf_jmp menyimpan informasi yang diperlukan. setjmp() sendiri akan mengembalikan nilai 0
+	jika sukses. Di lain sisi, longjmp berfungsi untuk jump ke kondisi yang sudah ditentukan melalui setjmp. setjmp tidak
+	me-return nilai apa-apa, tetapi setjmp memiliki parameter val yang digunakan sebagai pengganti return value setjmp,
+	karena longjmp melompat ke titik di mana sistem meng-expect setjmp untuk me-return valuenya. Selain itu, value yang
+	seolah-olah di return melalui longjmp ini tidak bisa 0, dan kalau kita set nilainya sebagai 0, yang dikembalikan adalah
+	1. Ketika kita sudah melakukan longjmp, env yang di set oleh setjmp akan di reset, sehingga untuk longjmp lagi, harus
+	ada setjmp lagi sebelumnya. Kalau tidak, saat melakukan longjmp akan terjadi segmentation fault.
+
+Apa yang belum saya pahami :
+	Saya masih belum 100% paham mengenai memory allocation, terutama free. Saya sudah ada gambaran dari mata kuliah OS,
+	tetapi sepertinya ada beberapa detail yang saya lupa atau belum pernah perhatikan.
