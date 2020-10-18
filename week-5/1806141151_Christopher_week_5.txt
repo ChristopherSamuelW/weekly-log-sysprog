@@ -69,3 +69,17 @@ Apa yang saya pelajari :
 Apa yang belum saya pahami :
 	Saya masih belum 100% paham mengenai memory allocation, terutama free. Saya sudah ada gambaran dari mata kuliah OS,
 	tetapi sepertinya ada beberapa detail yang saya lupa atau belum pernah perhatikan.
+
+Tanggal : 18 Oktober 2020
+Apa yang saya pelajari :
+	Dari mengerjakan worksheet, saya hari ini belajar beberapa hal yang cukup menarik dari proses mengalokasikan memory
+	dengan malloc. Saat kita menggunakan malloc, system call sbrk sebenarnya tidak akan selalu dipanggil oleh malloc
+	setiap kali malloc dipanggil. Hal ini tergantung dengan sisa data segment process tersebut, yang ditandakan juga
+	dengan program break, atau akhir dari data segment process tersebut. Ketika malloc dipanggil dan data segment masih
+	cukup untuk alokasi memory, sbrk tidak akan dipanggil, tetapi kalau data segment sudah mau habis, maka malloc akan
+	akan menggunakan sbrk untuk mengubah program break processnya sesuai kebutuhan. Hal ini juga menurut saya menjadi
+	kunci untuk menyelesaikan WS nomor 5 minggu ini. 
+
+Apa yang belum saya pahami :
+	Saya sudah mulai memahami lebih dalam mengenai mekanisme malloc dan free, tetapi saya masih butuh waktu untuk
+	benar-benar memahami apa yang sejauh ini saya pelajari dari virtual memory sampai memory allocation.
