@@ -1,0 +1,57 @@
+Tanggal : 23 Oktober 2020
+Apa yang saya pelajari :
+	Hari ini, saya pertama belajar mengenai make command dan Makefile. make adalah command yang digunakan untuk
+	menjalankan perintah-perintah di dalam sebuah Makefile. Tentunya, make tidak bisa dijalankan tanpa adanya Makefile,
+	tetapi, lokasi Makefile tidak perlu dispesifikasikan juga, karena make akan secara otomatis mencari Makefile dalam
+	presently working directory / current dir. Dalam kelas OS dan juga dalam tlpi-dist, fungsionalitas Makefile dan make
+	umumnya digunakan sebagai cara untuk mengcompile beberapa .c files secara sekaligus dengan command-commandnya, tetapi
+	commands dalam Makefile tidak hanya terbatas untuk melakukan kompilasi dengan gcc saja, misalnya untuk meng-automasi
+	proses runserver sebuah project Django.
+
+	Secara umum, Makefile tersusun atas satau atau beberapa rules yang tersusun dari target, dependencies, dan commandsnya.
+	Di dalam Makefile, kita masih bisa mendeklarasikan variabel dan menyusun dependency sendiri (seperti Makefiles
+	di subfolders tlpi-dist), tetapi yang menjadi fokus utama dalam pembahasan Makefile umumnya adalah rulesnya. Cara
+	penulisan sebuah rule dalam Makefile kurang lebih seperti ini:
+	target : dependency <bisa lebih dari satu, dipisahkan dengan whitespace saja>
+		command1
+		command2
+		...
+		commandN
+	Target dalam rule tersebut bisa diisi nama sesuai keinginan selama merupakan 1 kesatuan String. Dependency, sesuai
+	namanya, merupakan file-file atau target rule lain yang diperlukan agar commands dalam rule tersebut bisa dijalankan
+	oleh make. Sementara itu, commands di dalam rule tersebut bisa menggunakan command sederhana rm -rf *.o, atau bahkan
+	menggunakan python seperti python3 manage.py migrate. Untuk mempermudah penulisan, kita bisa mendeklarasikan beberapa
+	variabel seperti:
+	FILES = ../*.h ../../*
+	untuk mempermudah penulisan. Ada juga beberapa konvensi penulisan seperti rm dimasukkan dalam variabel RM (sehingga
+	dipanggilnya di command dengan ${RM}) atau gcc menjadi CC dan dipanggil dengan ${CC}.
+
+	Dalam penulisannya, sebuah Makefile dapat memiliki lebih dari satu rule. Untuk menjalankan suatu rule, kita bisa menjalankan
+	make target, dengan target pada dasarnya adalah nama rule yang ingin kita jalankan dengan make. Secara otomatis,
+	default rule/target untuk make adalah rule pertama dengan nama target yang tidak dimulai dengan ".". Oleh karenanya,
+	kita bisa menjalankan make tanpa menuliskan target, karena make akan otomatis menggunakan default target/rulenya.
+
+	Selain make dan Makefile, saya juga belajar mengenai command dd (convert and copy file) dengan mengerjakan soal WS,
+	dan secara tidak langsung saya juga belajar mengenai kegunaan /dev/urandom dan /dev/zero. dd, sesuai deskripsi tadi,
+	digunakan untuk mengcopy sebuah file dengan proses read-write. Secara default, dd akan melakukan read dari stdin
+	dan melakuka write pada stdout, tetapi dengan parameter if dan of, kita bisa mengganti dari mana dd melakukan read
+	(kegunaan if) dan melakukan write (kegunaan of). Selain itu, kita juga bisa menspesifikasikan block size yang digunakan
+	setiap kali proses read-write dilakukan (pada dasarnya ukuran 1 block untuk sebuah proses copy yang bisa diulang-ulang)
+	dengan parameter bs, dan kita bisa meminta dd untuk melakukan proses read-write itu sebanyak nilai dari parameter count.
+	Kalau file sudah habis, tetapi jumlah read-write belum mencapai batas count, dd akan mengcopy melakukan read block
+	data terdekat untuk mengkompensasinya.
+
+	Lalu, seperti yang tadi saya sebutkan, saya juga belajar sedkit mengenai /dev/urandom dan /dev/zero. Kedua file
+	tersebut adalah special files: /dev/urandom akan memberikan random numbers sesuai dengan permintaan read, sementara
+	/dev/zero akan mengembalikan null characters sebanyak yang diminta read. /dev/urandom sendiri masuk ke dalam "keluarga"
+	pseudo random number generators di UNIX dan UNIX-like OS bersama dengan /dev/random dan /dev/arandom, sementara
+	/dev/zero merupakan semacam versi /dev/null yang dapat dijadikan sebuah source.
+
+Apa yang belum saya pahami :
+	Sejauh ini, saya juga masih sedikit kesulitan membaca Makefile dengan special characters seperti ^ dan @ yang
+	memiliki makna tersendiri, karena saya belum terbiasa membaca command-command BASH ataupun command sejenisnya
+	yang seperti ini. Selain itu, saat mengerjakan WS, saya juga masih belum 100% yakin mengapa dd dengan if /dev/urandom
+	lebih lama dibanding dd dengan if /dev/zero untuk file size (count * bs) yang sama, bahkan setelah count dan
+	bs nya saya samakan. Sejauh dari yang saya tahu, ini karena /dev/zero hanya mengembalikan null characters sementara
+	/dev/urandom harus men-generate random numbers untuk diberikan ke read, dan proses penulisannya jadi sedikit lebih
+	lama, tetapi saya juga belum terlalu yakin dengan jawaban ini.
