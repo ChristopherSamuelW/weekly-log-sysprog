@@ -55,3 +55,25 @@ Apa yang belum saya pahami :
 	bs nya saya samakan. Sejauh dari yang saya tahu, ini karena /dev/zero hanya mengembalikan null characters sementara
 	/dev/urandom harus men-generate random numbers untuk diberikan ke read, dan proses penulisannya jadi sedikit lebih
 	lama, tetapi saya juga belum terlalu yakin dengan jawaban ini.
+
+Tanggal : 26 Oktober 2020
+Apa yang saya pelajari :
+	Pertama, saya belajar mengenai kegunaan fflush dan fsync. fflush, sesuai namanya, berfungsi untuk mem-flush isi dari
+	buffer stream yang ditunjuk dalam parameter fungsinya. fflush, walaupun mengosongkan buffer stream, tidak menutup 
+	buffer streamnya. Sementara itu, fsync akan menyebabkan semua data dan metadata buffer stream yang ditunjuknya
+	(parameternya adalah file descriptor dari streamnya) untuk di flush ke disk. Pemanggilan fsync akan berhenti ketika
+	data-data tersebut sudah sampai di disk, atau setidaknya sampai di cachenya.
+
+	Lalu, saya juga belajar sedikit mengenai properti printf() vs write(). printf() dalam C menggunakan stdio dan stdio
+	juga menggunakan buffer, karena akan lebih efisien bila kita mengakses dan menulis di disk 1 kali dengan jumlah byte yang besar
+	dibanding menulis ke disk setiap kali ada 1 byte data. Tetapi, kalau stdio menemukan newline character atau "\n",
+	stdio akan otomatis mem-flush buffernya. Di sisi lain, penulisan dengan write tidak di-buffer, jadi umumnya write akan
+	ditulis terlebih dahulu dibanding printf kalau tidak ada "\n" dalam String yang mau ditulis printf. Tetapi, saat
+	ada output redirection, misalnya ke sebuah file .txt, stdio tidak akan mem-flush buffer secara otomatis walaupun
+	menemukan "\n", dan akibatnya, seperti pada worksheet minggu ini di soal nomor 6, kalau ada printf dan write,
+	isi dari write akan tertulis di file terlebih dahulu dibanding isi dari printf.
+
+Apa yang belum saya pahami :
+	Sejauh dari apa yang saya pahami sekarang, yang masih mengganggu saya masih sama dengan isi log terakhir, mengenai
+	permasalahan /dev/urandom dan /dev/zero itu. Saya sudah lebih yakin dengan jawaban saya, tetapi saya masih ragu
+	apakah benar-benar itu jawabannya.
