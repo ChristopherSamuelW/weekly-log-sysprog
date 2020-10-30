@@ -1,0 +1,62 @@
+Tanggal : 30 Oktober 2020
+Apa yang saya pelajari :
+	Hari ini (dan juga kemarin), saya belajar mengenai scripting, terutama dengan BASH (Bourne Again SHell). Saat kita
+	menjalankan sebuah bash script, kita bisa mem-pass beberapa parameter atau command-line arguments, yang mirip
+	seperti bagaimana kita menjalankan sebuah compiled C file (misalnya bash test.sh 1 2 3). Argumen-argumen itu
+	bisa kota gunakan dengan memanggilnya secara individual ($1, $2, ..., karena argumennya one-indexed, sementara
+	$0 akan mengeluarkan nama file bash jika menjalankannya dengan "bash nama.sh"), atau secara keseluruhan dengan
+	$* atau $@.
+
+	Dalam scripting, bisa juga dibuat function dengan syntax
+	function func_name() {
+		...
+	}
+	dan parameternya bisa menggunakan command-line atau positional arguments saat memanggilnya (misalnya func_name 1 2,
+	di dalam func_name bila kita memanggil $1, akan didapat 1). Sejauh yang saya perhatikan, variabel dalam bash secara
+	default bersifat global, sehingga kalau mau membuat variabel local, perlu didefinisikan local di depan variable name.
+
+	Operasi-operasi seperti integer operation atau String concatenation juga memiliki syntax tersendiri. Untuk String
+	concatenation, kita bisa "menempelkan" 2 String sekaligus, dan saat kita echo, akan tampil sudah ter-concate. Hasil
+	concate ini juga bisa disimpan dalam sebuah variabel. Untuk integer operations, umumnya digunakan dengan:
+	$((integer_name + an_integer_string + another_integer_name ... )). Selain itu, kita juga bisa mengubah sebuah String
+	dengan whitespace menjadi sebuah array dengan ($string_name) (aksesnya dengan ${string_arr[n]}).
+
+	Bash script sendiri juga memperbolehkan kita untuk menjalankan command-command di terminal seperti cd dan ls -d,
+	yang juga saya gunakan dalam mengerjakan WS minggu ini. Selain itu, kita juga bisa mem-pipe output, seperti kita
+	mem-pipe kan beberapa command sekaligus di bash terminal.
+
+	Untuk loopingnya, sejauh ini yang sudah saya coba dan pelajari adalah penggunaan while, dan saya juga sudah belajar
+	menggunakan if clauses. Untuk while, syntaxnya adalah:
+	while [condition] <atau, kalau mau iterate through String misalnya, dengan while read $ITEM>
+		do
+			...
+		done <kalau mau melakukan iterasi, bisa ditambahkan <<< $ITERATED_ITEMS>
+	sementara untuk if, umumnya juga mengikuti syntax berikut:
+	if [ condition ]
+	then
+		...
+	elif [ condition ]
+	then
+		...
+	...
+	else
+		...
+	fi
+	Berhubung dengan condition, bash juga memiliki logical operators tersendiri, seperti -z $String untuk memeriksa
+	apakah panjang $String == 0, atau -d $dir yang memeriksa apakah $dir adalah directory yang valid.
+
+	Terakhir, saya belajar mengenai cara mengubah command prompt saya. Variabel ~/.bashrc yang berfungsi mengatur
+	hal tersebut adalah PS1, dan dengan mengubah PS1, kita juga bisa mengubah command prompt kita. Dalam menjalankan
+	script yang mengubah PS1 atau variabel bash shell lainnya (parent dari script), perlu dilakukan source, misalnya
+	. change.sh. Selain itu, saya juga belajar mengenai special characters, misalnya \D{format}, yang menampilkan
+	waktu sesuai format, dan format itu sendiri valid selama mengikuti aturan strftime. Kita juga bisa mewarnai text di
+	command prompt dengan \e[x;ym dan mengakhirinya dengan \e[m, dengan x dan y adalah kombinasi kode untuk warna tertentu.
+	Agar tampilan tidak hancur/overlap (saya mengalami saat mencoba sendiri), kita perlu memberikan penanda non=printing
+	character (\[ ... \]) agar karakter untuk warna tidak ikut dianggap sebagai karakter yang harus ditampilkan (yang
+	akhirnya bisa membuat tampilan prompt menjadi berantakan).
+
+
+Apa yang belum saya pahami :
+	Sejauh ini, saya belum memiliki pertanyaan, tetapi memang saya sedikit kesulitan menuliskan apa yang saya pahami
+	dalam log minggu ini, karena menurut saya rata-rata yang saya pelajari tentang materi ini lebih mengarah ke pemahaman
+	dan penggunaan commands, dan menguraikannya dalam kata-kata cukup rumit.
