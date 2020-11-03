@@ -60,3 +60,23 @@ Apa yang belum saya pahami :
 	Sejauh ini, saya belum memiliki pertanyaan, tetapi memang saya sedikit kesulitan menuliskan apa yang saya pahami
 	dalam log minggu ini, karena menurut saya rata-rata yang saya pelajari tentang materi ini lebih mengarah ke pemahaman
 	dan penggunaan commands, dan menguraikannya dalam kata-kata cukup rumit.
+
+Tanggal : 2-3 November 2020
+Apa yang saya pelajari :
+	Melanjutkan Worksheet minggu ini, saya mendapat beberapa informasi yang menarik juga. Saya menemukan satu cara untuk
+	melihat semua user yang ada di sistem dengan command awk ini : awk -F':' '{ print $1}' /etc/passwd, yang pada
+	dasarnya membaca /etc/passwd dan mengambil usernamenya saja. Selain itu, saya juga belajar bahwa file ownership
+	dapat diganti dengan command chown, walaupun umumnya memerlukan sudo juga. Untuk bagian string manipulation,
+	saya baru tahu bahwa cara memotong string menjadi substring adalah sebagai berikut : ${string:startIndex:jumlahChar},
+	dan substring itu juga bisa dimanipulasi agar bisa mengambil 1 karakter saja untuk iterasi setia karakter, seperti
+	yang saya lakukan untuk meng-handle JSON file pada nomor 1 WS.
+
+	Secara pribadi, saya merasa bahwa secara esensi scripting dengan Bash tidak terlalu berbeda dengan programming
+	pada umumnya, atau setidaknya dari yang saya terapkan. Saya masih ragu apakah menerapkan logic yang biasa saya gunakan
+	dalam programming dengan C, Python, dan high-level language lainnya baik bila diterapkan dalam konteks Scripting.
+
+Apa yang belum saya pahami :	
+	Sama seperti log terakhir, saya merasa bahwa apa yang saya pelajari lebih tercermin dalam apa yang saya kerjakan,
+	jadi saya juga memutuskan untuk mem-push hasil kerja saya ke repository weekly log ini. Untuk selebihnya, saya
+	masih kurang paham juga mengenai redirection (<, <<, <<<, dst.) dan apa perbedaannya. Sejauh ini yang saya pahami
+	<<< untuk redirection nilai dari variabel, dan >> untuk redirect ke suatu file.
